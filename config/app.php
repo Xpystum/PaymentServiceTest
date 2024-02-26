@@ -170,7 +170,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+         /*
+         * My Service Providers...
+         */
         App\Services\Currencies\CurrencyServiceProvider::class,
+        App\Services\Orders\OrderSerivceProvider::class,
     ])->toArray(),
 
     /*

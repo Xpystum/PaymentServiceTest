@@ -15,6 +15,8 @@ class Currency extends Model
 {
     use HasFactory;
 
+    public const RUB = 'RUB';
+
     protected $keyType = 'string';
 
     public $incrementing = false;

@@ -34,7 +34,7 @@ class InstallCurrenciesCommand extends Command
     {
         Currency::query()
             ->firstOrCreate(
-                ['id' => 'RUB'], 
+                ['id' => Currency::RUB], 
                 ['name' => 'Рубль'],
         );
     }
