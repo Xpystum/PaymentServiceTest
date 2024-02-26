@@ -4,15 +4,15 @@
 
     <section>
 
-        <div class="container">
+        <x-container>
 
             <h4 class="mb-3">
                 {{ __('Мои Заказы') }}
             </h4>
 
-            <div class="card">
+            <x-card class="card">
 
-                <div class="card-body">
+                <x-card-body>
 
                     <h5 class="card-title-mb-0">
 
@@ -20,13 +20,13 @@
 
                     </h5>
 
-                </div>
+                </x-card-body>
 
           
 
-                <ul class="list-group list-group-flush">
+                <x-list.list-group class="list-group-flush">
                     
-                    <li class="list-group-item">
+                    <x-list.list-group-item>
 
                         <div class="row">
 
@@ -46,9 +46,9 @@
 
                         </div>
 
-                    </li>
+                    </x-list.list-group-item>
 
-                    <li class="list-group-item">
+                    <x-list.list-group-item >
 
                         <div class="row">
 
@@ -70,10 +70,10 @@
                             
                         </div>
 
-                    </li>
+                    </x-list.list-group-item>
 
 
-                    <li class="list-group-item">
+                    <x-list.list-group-item>
 
                         <div class="row">
 
@@ -99,30 +99,27 @@
                             
                         </div>
 
-                    </li>
+                    </x-list.list-group-item>
 
-                </ul>
+                </x-list.list-group>
 
-                <div class="card-body">
+                <x-card-body>
 
+                    <x-form action="" method="POST">
 
-                    <form action="" method="POST">
-                        @csrf
-
-                        <button type='submit' class="btn btn-primary">
+                        <x-button type="submit" >
 
                             {{ __('Перейти к оплате') }}
     
-                        </button>
+                        </x-button>
 
-                    </form>
-                    
+                    </x-form>
 
-                </div>
+                </x-card-body>
 
-            </div>
+            </x-card>
 
-        </div>
+        </x-container>
 
     </section>
 

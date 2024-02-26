@@ -4,7 +4,7 @@
 
     <section>
 
-        <div class="container">
+        <x-container>
             <h4 class="mb-3">
                 {{ __('Мои Заказы') }}
             </h4>
@@ -88,7 +88,7 @@
             @endif
 
 
-        </div>
+        </x-container>
 
     </section>
 
