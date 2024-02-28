@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\services\Orders\Models\Order;
+use App\Services\Payments\Enums\PaymentStatusEnum;
+use App\Services\Payments\Models\Payment;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    
     public function index(){
         
         $orders = Order::query()->get();
@@ -19,10 +24,35 @@ class OrderController extends Controller
 
         $user = $request->user();
 
-        // abort_unless($user->owns($order), 404);
-        
-
         return view('orders.show', compact('order'));
-        // dd($order->toArray());
+   
+    }
+
+    public function payment(Order $order){
+
+
+        $payment = Payment::query()
+            ->create([
+
+                'uuid' => (string) Str::uuid() ,
+                
+                'status' => PaymentStatusEnum::pending,
+        
+                'currency_id' => $order->currency_id ,
+
+                'amount' => $order->amount ,
+        
+                'payable_type' => $order->getMorphClass(), 
+
+                'payable_id' => $order->id ,
+        
+                'method_id' => null ,
+        
+                'drive' => null ,
+
+            ]);
+        
+        
+        return to_route('payments.checkout', $payment->uuid);
     }
 }

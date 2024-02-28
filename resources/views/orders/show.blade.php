@@ -105,9 +105,9 @@
 
                 <x-card-body>
 
-                    <x-form action="" method="POST">
+                    <x-form action="{{ route('orders.payment', $order->uuid) }}" method="POST">
 
-                        <x-button type="submit" >
+                        <x-button  type="submit" >
 
                             {{ __('Перейти к оплате') }}
     

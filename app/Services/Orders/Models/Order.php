@@ -34,6 +34,8 @@ class Order extends Model
 
     protected $fillable = [
 
+        'uuid',
+
         'status', 
 
         'currency_id', 'amount'
