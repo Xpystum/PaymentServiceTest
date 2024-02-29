@@ -2,6 +2,8 @@
 
 namespace App\Services\Payments;
 
+use App\services\Orders\Models\Order;
+use App\Services\Payments\Actions\CreatePaymentAction;
 use App\Services\Payments\Drivers\Factory\PaymentDriverFactory;
 use App\Services\Payments\Drivers\TestPaymentDriver;
 use App\Services\Payments\Enums\PaymentDriverEnum;
@@ -16,6 +18,12 @@ class PaymentService
         
         return (new PaymentDriverFactory)->make($driver);
 
+    }
+
+    public function createPayment() : CreatePaymentAction
+    {
+
+        return new CreatePaymentAction;
     }
 
     

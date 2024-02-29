@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\services\Orders\Models\Order;
 use App\Services\Payments\Enums\PaymentStatusEnum;
 use App\Services\Payments\Models\Payment;
+use App\Services\Payments\PaymentService;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -28,31 +29,26 @@ class OrderController extends Controller
    
     }
 
-    public function payment(Order $order){
+    public function payment(Order $order, PaymentService $paymentService)
+    {
 
+        //создаём экзампляр сервеса
+        // $service = new PaymentService;
 
-        $payment = Payment::query()
-            ->create([
+        //получаем Action сервеса
+        // $action = $service->createPayment($order);
 
-                'uuid' => (string) Str::uuid() ,
-                
-                'status' => PaymentStatusEnum::pending,
-        
-                'currency_id' => $order->currency_id ,
+        //Запускаем работу этого Action (Bulder)
+        // $action->run();
 
-                'amount' => $order->amount ,
-        
-                'payable_type' => $order->getMorphClass(), 
+        //таким подходом мы можем контролировать создание payment (и например создать метод оплаты без комиссии и т.д более гибко)
+        $payment = $paymentService
+            ->createPayment()
+            ->payable($order)
+            ->run();
 
-                'payable_id' => $order->id ,
         
-                'method_id' => null ,
-        
-                'drive' => null ,
 
-            ]);
-        
-        
         return to_route('payments.checkout', $payment->uuid);
     }
 }

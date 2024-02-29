@@ -2,8 +2,8 @@
 
 namespace App\services\Orders\Models;
 
-use App\Services\Currencies\Models\Currency;
 use App\Services\Orders\Enums\OrderStatusEnum;
+use App\Services\Payments\Interface\Payable;
 use App\Services\Payments\Models\Payment;
 use App\Support\Values\AmountValue;
 use Carbon\Carbon;
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 
 
-class Order extends Model
+class Order extends Model implements Payable
 {
     use HasFactory;
 
@@ -55,6 +55,32 @@ class Order extends Model
         return $this->morphOne(Payment::class, 'payabel');
     }
 
+    public function getPayableCurrencyId(): string
+    {
+        return $this->currency_id;
+    }
+
+    public function getPayableAmount(): AmountValue
+    {
+
+        return $this->amount;
+    }
+
+    public function getPayableType(): string
+    {
+
+        return $this->getMorphClass();
+    }
+
+    public function getPayableId(): int
+    {
+        return $this->id;
+    }
+
+    public function getPayableName(): string
+    {
+        return 'Заказ';
+    }
     
 }
  

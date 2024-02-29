@@ -4,13 +4,11 @@ namespace App\Services\Payments\Models;
 
 use App\Services\Payments\Enums\PaymentDriverEnum;
 use App\Services\Payments\Enums\PaymentStatusEnum;
-use app\Support\Values\AmountValue;
+use App\Support\Values\AmountValue;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-
-
 /**
  * @property int $id
  * 
@@ -25,6 +23,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property AmountValue $amount
  * 
  * @property string $payable_type
+ * 
+ * @property Payable $payable
  * 
  * @property int $payable_id
  * 

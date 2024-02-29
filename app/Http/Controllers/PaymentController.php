@@ -9,6 +9,6 @@ class PaymentController extends Controller
 {
     public function checkout(Payment $payment)
     {
-        dd(12345234);
+        return view('payments.checkout', compact('payment'));
     }
 }

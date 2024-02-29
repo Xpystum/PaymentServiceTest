@@ -24,7 +24,7 @@ class AmountValue implements Castable
 
     public function value(): string
     {
-        return $this->value;
+        return (string) $this->value;
     } 
 
     public static function castUsing(array $arguments)

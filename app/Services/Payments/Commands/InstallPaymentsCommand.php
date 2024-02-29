@@ -25,7 +25,7 @@ class InstallPaymentsCommand extends Command
         $this->warn('Установка платежных систем...');
 
         $this->installPaymentMethods();
-
+        
         $this->info('Платежные системы установлены.');
     }
 

@@ -13,4 +13,4 @@ Route::get('/orders/{order:uuid}', [OrderController::class, 'show'])->name('orde
 
 Route::post('/orders/{order:uuid}/payment', [OrderController::class, 'payment'])->name('orders.payment');
 
-Route::get('/payments/{payments:uuid}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
+Route::get('/payments/{payment:uuid}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
