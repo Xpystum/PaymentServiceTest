@@ -1,5 +1,9 @@
-<form {{ $attributes }} >
+<form {{ $attributes->merge([
     
+    'action' => '',
+
+]) }} >
+
     @csrf
     {{ $slot }}
 

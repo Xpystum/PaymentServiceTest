@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52bf627e9fa3732e1a66b64f52291584",
+    "content-hash": "90a3b7ec1d91bfaea418ee0a2398f760",
     "packages": [
         {
             "name": "brick/math",
@@ -6576,16 +6576,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "14.3.4",
+            "version": "14.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "59ccecf2876b04bcc61c4b09843410733aaa13ff"
+                "reference": "2ec9c04350975d9ee4acfd849ea753cee0f8d7fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/59ccecf2876b04bcc61c4b09843410733aaa13ff",
-                "reference": "59ccecf2876b04bcc61c4b09843410733aaa13ff",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/2ec9c04350975d9ee4acfd849ea753cee0f8d7fd",
+                "reference": "2ec9c04350975d9ee4acfd849ea753cee0f8d7fd",
                 "shasum": ""
             },
             "require": {
@@ -6632,7 +6632,7 @@
                 "issues": "https://github.com/Laravel-Lang/lang/issues",
                 "source": "https://github.com/Laravel-Lang/lang"
             },
-            "time": "2024-02-22T06:26:59+00:00"
+            "time": "2024-02-29T01:57:23+00:00"
         },
         {
             "name": "laravel-lang/locale-list",

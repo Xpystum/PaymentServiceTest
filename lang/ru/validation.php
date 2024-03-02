@@ -148,6 +148,7 @@ return [
     'url'                  => 'Значение поля :attribute имеет ошибочный формат URL.',
     'uuid'                 => 'Значение поля :attribute должно быть корректным UUID.',
     'attributes'           => [
+        'method_id' => 'Способ оплаты',
         'address'                  => 'адрес',
         'affiliate_url'            => 'Партнёрская ссылка',
         'age'                      => 'возраст',

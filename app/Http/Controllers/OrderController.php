@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\services\Orders\Models\Order;
-use App\Services\Payments\Enums\PaymentStatusEnum;
-use App\Services\Payments\Models\Payment;
 use App\Services\Payments\PaymentService;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -42,6 +39,7 @@ class OrderController extends Controller
         // $action->run();
 
         //таким подходом мы можем контролировать создание payment (и например создать метод оплаты без комиссии и т.д более гибко)
+        //payable - что оплачивается (услуга, товар и т.д)
         $payment = $paymentService
             ->createPayment()
             ->payable($order)

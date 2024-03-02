@@ -36,4 +36,28 @@ enum PaymentStatusEnum: string
         };
     }
 
+    private function is(PaymentStatusEnum $status): bool
+    {
+
+        return $this === $status;
+    }
+
+    public function isPending(): bool
+    {
+        
+        return $this->is(PaymentStatusEnum::pending);
+    }
+
+    public function isCompleted(): bool
+    {
+        
+        return $this->is(PaymentStatusEnum::completed);
+    }
+
+    public function isCancelled(): bool
+    {
+        
+        return $this->is(PaymentStatusEnum::cancelled);
+    }
+
 }

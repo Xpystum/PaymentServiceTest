@@ -129,21 +129,68 @@
 
                 <x-card-body>
 
-                    <x-form action="" method="POST">
+                    @if($methods->isEmpty())
 
-                        <p>
+                        <div class="text-info">
+                            {{ __('Извините, оплата временно недоступна') }}
+                        </div>
+                        
+                    @else
 
-                            {{ __('Выберите способ оплаты.') }}
+                    
+                        @if($errors->any())
+                        
+                            <div class="mb-3 text-danger">
+                                {{ $errors->first() }}
+                            </div>
 
-                        </p>
+                        @endif
 
-                        <x-button  type="submit" >
+                        <x-form action="{{ route('payments.method', $payment->uuid) }}" method="POST">
 
-                            {{ __('Продолжить') }}
-    
-                        </x-button>
+                            <div class="row">
 
-                    </x-form>
+                                <div class="col-12 col-md-4">
+
+                                    <div class="mb-3 mb-md-0">
+
+                                        <select name="method_id" class="form-control">
+
+                                            <option value="" selected>
+                                                {{ __('Способ оплаты') }}
+                                            </option>
+
+                                            @foreach ($methods as $method)
+
+                                                <option value="{{ $method->id }}">
+
+                                                    {{ __($method->name) }}
+
+                                                </option>
+
+                                            @endforeach
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col12 col-md-4">
+
+                                    <x-button type="submit" class="w-100">
+                                        {{ __('Продолжить') }}
+                                    </x-button>
+
+                                </div>
+
+                            </div>
+
+                        
+
+                        </x-form>
+
+                    @endif
 
                 </x-card-body>
 
