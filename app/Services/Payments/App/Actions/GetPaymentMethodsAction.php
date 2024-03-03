@@ -1,24 +1,15 @@
 <?php
 
-namespace App\Services\Payments\Actions;
+namespace App\Services\Payments\App\Actions;
 
-use App\Services\Payments\Models\PaymentMethod;
+use App\Services\Payments\App\Actions\Traits\ActionHelperTrait;
+use App\Services\Payments\database\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Collection;
+
 
 class GetPaymentMethodsAction{
 
-
-    private bool|null $active = null;
-
-
-    public function active(bool $active = true): static
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-  
+    use ActionHelperTrait;
 
     public function run(): Collection
     {

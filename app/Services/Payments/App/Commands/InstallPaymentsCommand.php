@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Payments\Commands;
+namespace App\Services\Payments\App\Commands;
 
-use App\Services\Payments\Enums\PaymentDriverEnum;
-use App\Services\Payments\Models\PaymentMethod;
+use App\Services\Payments\database\Enums\PaymentDriverEnum;
+use App\Services\Payments\database\Models\PaymentMethod;
+
 use Illuminate\Console\Command;
-
 class InstallPaymentsCommand extends Command
 {
     protected $signature = 'payments:install';

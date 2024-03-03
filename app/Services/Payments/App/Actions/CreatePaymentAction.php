@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Payments\Actions;
+namespace App\Services\Payments\App\Actions;
 
-use App\Services\Payments\Enums\PaymentStatusEnum;
+use App\Services\Payments\database\Enums\PaymentStatusEnum;
+use App\Services\Payments\database\Models\Payment;
+
 use App\Services\Payments\Interface\Payable;
-use App\Services\Payments\Models\Payment;
 use Illuminate\Support\Str;
-
 //Bulder
 class CreatePaymentAction
 {
@@ -21,7 +21,6 @@ class CreatePaymentAction
         return $this;
 
     }
-
     public function run() : Payment
     {  
 

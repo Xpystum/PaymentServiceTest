@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Payments\Drivers;
+namespace App\Services\Payments\App\Drivers;
 
 use App\Services\Payments\Interface\PaymentDriverInterface;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Payments\Models;
+namespace App\Services\Payments\database\Models;
 
-use App\Services\Payments\Enums\PaymentDriverEnum;
+use App\Services\Payments\database\Enums\PaymentDriverEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

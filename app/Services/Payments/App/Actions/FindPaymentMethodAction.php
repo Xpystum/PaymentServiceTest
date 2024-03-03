@@ -1,23 +1,17 @@
 <?php
 
-namespace App\Services\Payments\Actions;
+namespace App\Services\Payments\App\Actions;
 
-use App\Services\Payments\Models\PaymentMethod;
+use App\Services\Payments\App\Actions\Traits\ActionHelperTrait;
+use App\Services\Payments\database\Models\PaymentMethod;
+use ArgumentCountError;
+
 
 class FindPaymentMethodAction{
 
-
-    private bool|null $active = null;
-
     private int|null $id = null;
-
-
-    public function active(bool $active = true): static
-    {
-        $this->active = $active;
-
-        return $this;
-    }
+  
+    use ActionHelperTrait;
 
     public function id(int $id): static
     {
@@ -45,7 +39,9 @@ class FindPaymentMethodAction{
         }else{
 
             //выбивать исключение если нету id
-
+            throw new ArgumentCountError(
+                "Обязательный Аргумент id равен: [{$this->id}]"
+            );
         }
 
         return $query->first();

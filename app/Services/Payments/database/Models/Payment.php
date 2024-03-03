@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Services\Payments\Models;
+namespace App\Services\Payments\database\Models;
 
-use App\Services\Payments\Enums\PaymentDriverEnum;
-use App\Services\Payments\Enums\PaymentStatusEnum;
+use App\Services\Payments\database\Enums\PaymentDriverEnum;
+use App\Services\Payments\database\Enums\PaymentStatusEnum;
+use App\Services\Payments\Interface\Payable;
 use App\Support\Values\AmountValue;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

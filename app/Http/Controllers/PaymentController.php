@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Payments\Models\Payment;
+use App\Services\Payments\App\Requests\UpdatePaymentRequest;
+use App\Services\Payments\database\Models\Payment;
 use App\Services\Payments\PaymentService;
-use App\Services\Payments\Requests\UpdatePaymentRequest;
+
 
 class PaymentController extends Controller
 {
@@ -31,7 +32,7 @@ class PaymentController extends Controller
     ) {
 
         
-        //проверка статуса платежа если не panding - то 404
+        //проверка статуса платежа если не pending - то 404
         abort_unless($payment->status->isPending(), 404);
         $validated = $request->validated();
 

@@ -2,8 +2,9 @@
 
 namespace App\Services\Payments;
 
-use App\Services\Payments\Commands\InstallPaymentsCommand;
+use App\Services\Payments\App\Commands\InstallPaymentsCommand;
 use Illuminate\Support\ServiceProvider;
+
 
 class PaymentServiceProvider extends ServiceProvider
 {

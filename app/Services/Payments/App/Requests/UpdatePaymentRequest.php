@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Payments\Requests;
+namespace App\Services\Payments\App\Requests;
 
-use App\Services\Payments\Models\PaymentMethod;
+use App\Services\Payments\database\Models\PaymentMethod;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

@@ -3,8 +3,8 @@
 namespace App\services\Orders\Models;
 
 use App\Services\Orders\Enums\OrderStatusEnum;
+use App\Services\Payments\database\Models\Payment;
 use App\Services\Payments\Interface\Payable;
-use App\Services\Payments\Models\Payment;
 use App\Support\Values\AmountValue;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Payments\Actions;
+namespace App\Services\Payments\App\Actions;
 
-use App\Services\Payments\Models\Payment;
-use App\Services\Payments\Models\PaymentMethod;
+use App\Services\Payments\database\Models\Payment;
+use App\Services\Payments\database\Models\PaymentMethod;
 
 class UpdatePaymentAction{
 
