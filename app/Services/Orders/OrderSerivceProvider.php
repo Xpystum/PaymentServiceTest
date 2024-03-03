@@ -2,7 +2,7 @@
 
 namespace App\Services\Orders;
 
-use App\Services\Orders\Factories\OrderFactory;
+use App\Services\Orders\Commands\InstallOrdersCommand;
 use App\services\Orders\Models\Order;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -22,15 +22,12 @@ class OrderSerivceProvider extends ServiceProvider
             'order' => Order::class,
         ]);
 
-
         if($this->app->runningInConsole()){
-
             //наполнением таблицы заказами
-            (new OrderFactory)->count(100)->create();
-
+            // (new OrderFactory)->count(100)->create();
             $this->loadMigrationsFrom(__DIR__ . '/Migrations');
             $this->commands([
-                // InstallCurrenciesCommand::class,
+                InstallOrdersCommand::class,
             ]);
 
         }

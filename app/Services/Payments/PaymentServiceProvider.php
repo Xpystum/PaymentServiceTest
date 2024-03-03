@@ -17,7 +17,7 @@ class PaymentServiceProvider extends ServiceProvider
     {
         if($this->app->runningInConsole()){
 
-            $this->loadMigrationsFrom(__DIR__ . '/Migrations');
+            $this->loadMigrationsFrom( __DIR__ . '/database/' . '/Migrations');
 
             $this->commands([
                 InstallPaymentsCommand::class,
