@@ -7,14 +7,53 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/orders', 301)->name('home');
 
 
-Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 
-Route::get('/orders/{order:uuid}', [OrderController::class, 'show'])->name('orders.show');
+Route::controller(OrderController::class)->group(function() {
 
-Route::post('/orders/{order:uuid}/payment', [OrderController::class, 'payment'])->name('orders.payment');
+    Route::get('/orders',  'index')->name('orders');
 
-Route::get('/payments/{payment:uuid}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
+    Route::get('/orders/{order:uuid}', 'show')->name('orders.show');
 
-Route::post('/payments/{payment:uuid}/method', [PaymentController::class, 'method'])->name('payments.method');
+    Route::post('/orders/{order:uuid}/payment', 'payment')->name('orders.payment');
 
-Route::get('/payments/{payment:uuid}/process', [PaymentController::class, 'process'])->name('payments.process');
+});
+
+Route::controller(PaymentController::class)->group(function() {
+
+    Route::get('/payments/{payment:uuid}/checkout', 'checkout')->name('payments.checkout');
+
+    Route::middleware('IsStatusPayment')->group(function (){
+
+        Route::post('/payments/{payment:uuid}/method', 'method')->name('payments.method');
+
+        Route::get('/payments/{payment:uuid}/process', 'process')->name('payments.process');
+
+        Route::post('/payments/{payment:uuid}/complete', 'complete')
+            ->middleware('IsProduction')
+            ->middleware('IsDriverTest')
+            ->name('payments.complete');
+
+        Route::post('/payments/{payment:uuid}/cancel', 'cancel')
+            ->middleware('IsProduction')
+            ->middleware('IsDriverTest')
+            ->name('payments.cancel');
+
+    });
+
+    //некоторые способы оплаты например тинькофф не могут обратно передать {payment:uuid} -> uuid платежа, поэтому надо убирать, или получится не универсально
+    Route::get('/payments/success', 'success')
+        ->middleware('IsUuid')
+        ->name('payments.success');
+
+        //некоторые способы оплаты например тинькофф не могут обратно передать {payment:uuid} -> uuid платежа, поэтому надо убирать, или получится не универсально
+    Route::get('/payments/failure', 'failure')
+        ->middleware('IsUuid')
+        ->name('payments.failure');
+
+});
+
+
+
+
+
+

@@ -2,8 +2,8 @@
 
 namespace App\Services\Payments\App\Actions;
 
-use App\Services\Payments\database\Enums\PaymentStatusEnum;
-use App\Services\Payments\database\Models\Payment;
+use App\Services\Payments\Database\Enums\PaymentStatusEnum;
+use App\Services\Payments\Database\Models\Payment;
 
 use App\Services\Payments\Interface\Payable;
 use Illuminate\Support\Str;

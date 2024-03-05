@@ -81,6 +81,11 @@ class Order extends Model implements Payable
     {
         return 'Заказ';
     }
+
+    public function getPayableUrl(): string
+    {
+        return route('orders.show', $this->uuid);
+    }
     
 }
  

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Payments\database\Enums;
+namespace App\Services\Payments\Database\Enums;
 
 enum PaymentDriverEnum: string
 {
@@ -14,5 +14,17 @@ enum PaymentDriverEnum: string
 
         };
     }
+
+    private function is(PaymentDriverEnum $status): bool
+    {
+        return $this === $status;
+    }
+
+    public function isTest(): bool
+    {
+        return $this->is(PaymentDriverEnum::test);
+    }
+
+    
 
 }

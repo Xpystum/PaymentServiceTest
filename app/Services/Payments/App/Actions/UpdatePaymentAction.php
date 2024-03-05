@@ -2,8 +2,8 @@
 
 namespace App\Services\Payments\App\Actions;
 
-use App\Services\Payments\database\Models\Payment;
-use App\Services\Payments\database\Models\PaymentMethod;
+use App\Services\Payments\Database\Models\Payment;
+use App\Services\Payments\Database\Models\PaymentMethod;
 
 class UpdatePaymentAction{
 
@@ -19,13 +19,15 @@ class UpdatePaymentAction{
 
     public function run(Payment $payment) : bool
     {
-        if(! is_null($this->method)  )
+        if(!is_null($this->method))
         {
+            // dd($this->method->driver->value);
             $payment->fill([
                 'method_id' => $this->method->id,
-                'driver' => $this->method->name,
+                'driver' => $this->method->driver,
             ]);
         }
+       
         return $payment->save();
     }
 }

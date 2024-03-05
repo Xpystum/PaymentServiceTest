@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Payments\database\Models;
+namespace App\Services\Payments\Database\Models;
 
 use App\Services\Payments\database\Enums\PaymentDriverEnum;
 use App\Services\Payments\database\Enums\PaymentStatusEnum;
@@ -53,7 +53,7 @@ class Payment extends Model
 
         'method_id',
 
-        'drive',
+        'driver',
 
     ];
 
@@ -63,7 +63,7 @@ class Payment extends Model
 
         'amount' => AmountValue::class,
 
-        'drive'=> PaymentDriverEnum::class,
+        'driver' => PaymentDriverEnum::class,
 
     ];
 

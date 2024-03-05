@@ -2,8 +2,8 @@
 
 namespace App\Services\Payments\App\Commands;
 
-use App\Services\Payments\database\Enums\PaymentDriverEnum;
-use App\Services\Payments\database\Models\PaymentMethod;
+use App\Services\Payments\Database\Enums\PaymentDriverEnum;
+use App\Services\Payments\Database\Models\PaymentMethod;
 
 use Illuminate\Console\Command;
 class InstallPaymentsCommand extends Command

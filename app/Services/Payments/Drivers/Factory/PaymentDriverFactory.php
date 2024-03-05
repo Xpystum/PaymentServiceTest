@@ -2,8 +2,8 @@
 
 namespace App\Services\Payments\Drivers\Factory;
 
-use App\Services\Payments\App\Drivers\TestPaymentDriver;
-use App\Services\Payments\database\Enums\PaymentDriverEnum;
+use App\Services\Payments\Drivers\TestPaymentDriver;
+use App\Services\Payments\Database\Enums\PaymentDriverEnum;
 use App\Services\Payments\Interface\PaymentDriverInterface;
 use InvalidArgumentException;
 class PaymentDriverFactory

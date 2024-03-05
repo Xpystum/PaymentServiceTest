@@ -2,10 +2,12 @@
 
 namespace App\Services\Payments;
 
-
+use App\Services\Payments\App\Actions\CancelPayment;
+use App\Services\Payments\App\Actions\CompletePayment;
 use App\Services\Payments\App\Actions\CreatePaymentAction;
 use App\Services\Payments\App\Actions\FindPaymentMethodAction;
 use App\Services\Payments\App\Actions\GetPaymentMethodsAction;
+use App\Services\Payments\App\Actions\GetPaymentsAction;
 use App\Services\Payments\App\Actions\UpdatePaymentAction;
 use App\Services\Payments\Drivers\Factory\PaymentDriverFactory;
 use App\Services\Payments\database\Enums\PaymentDriverEnum;
@@ -23,20 +25,33 @@ class PaymentService
         return new CreatePaymentAction;
     }
 
+    public function getPayments() : GetPaymentsAction
+    {   
+        return new GetPaymentsAction;
+    }
+
     public function getPaymentMethods() : GetPaymentMethodsAction
     {
         return new GetPaymentMethodsAction;
-    }
-
-    public function findPaymentMethod() : FindPaymentMethodAction
-    {
-        return new FindPaymentMethodAction;
     }
 
     public function updatePayment() : UpdatePaymentAction
     {   
         return new UpdatePaymentAction;
     }
+
+    public function completePayment() : CompletePayment
+    {       
+        return new CompletePayment;
+    }
+
+    public function cancelPayment() : CancelPayment
+    {   
+           
+        return new CancelPayment;
+    }
+
+ 
 
 
     

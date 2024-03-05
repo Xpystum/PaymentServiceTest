@@ -45,7 +45,7 @@ return new class extends Migration
             $table->foreign('method_id')->references('id')->on('payment_methods');
 
 
-            $table->string('drive')->nullable(); // для удобности (но нарушается нормализация)
+            $table->string('driver')->nullable(); // для удобности (но нарушается нормализация)
 
 
         });

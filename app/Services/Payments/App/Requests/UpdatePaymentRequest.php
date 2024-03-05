@@ -2,7 +2,7 @@
 
 namespace App\Services\Payments\App\Requests;
 
-use App\Services\Payments\database\Models\PaymentMethod;
+use App\Services\Payments\Database\Models\PaymentMethod;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -17,12 +17,10 @@ class UpdatePaymentRequest extends FormRequest
 
     public function rules(): array
     {
+        //TODO убрать проверку на споосб оплаты
         return [
 
-            'method_id' => [ 'required', 'integer', 
-
-            Rule::exists(PaymentMethod::class, 'id')
-            ->where('active', true)]
+            'method_id' => [ 'required', 'integer']
 
         ];
     }

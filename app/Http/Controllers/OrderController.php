@@ -40,12 +40,12 @@ class OrderController extends Controller
 
         //таким подходом мы можем контролировать создание payment (и например создать метод оплаты без комиссии и т.д более гибко)
         //payable - что оплачивается (услуга, товар и т.д)
+
+        //TODO Каждый раз создаёт новую оплату при переходи (Перейти к оплате) - нужно предусмотреть
         $payment = $paymentService
             ->createPayment()
             ->payable($order)
             ->run();
-
-        
 
         return to_route('payments.checkout', $payment->uuid);
     }

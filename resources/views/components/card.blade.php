@@ -1,5 +1,5 @@
 <div {{ $attributes->class([
-    'class' => 'card'
+    'card'
 ]) }}>
 
     {{ $slot }}

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -64,5 +65,12 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        //Payment Services Middleware
+        'IsStatusPayment' =>  \App\Services\Payments\App\Middleware\IsStatusPayment::class,
+        'IsProduction' =>  \App\Services\Payments\App\Middleware\IsProduction::class,
+        'IsDriverTest' =>  \App\Services\Payments\App\Middleware\IsDriverTest::class,
+        'IsDriverTest' =>  \App\Services\Payments\App\Middleware\IsDriverTest::class,
+        'IsUuid' =>  \App\Services\Payments\App\Middleware\IsUuid::class,
     ];
 }

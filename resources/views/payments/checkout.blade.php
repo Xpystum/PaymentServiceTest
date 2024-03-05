@@ -1,3 +1,5 @@
+
+
 @extends('templates.main')
 
 @section('main.content')
@@ -137,7 +139,7 @@
                         
                     @else
 
-                    
+                
                         @if($errors->any())
                         
                             <div class="mb-3 text-danger">
@@ -186,8 +188,6 @@
 
                             </div>
 
-                        
-
                         </x-form>
 
                     @endif
@@ -201,3 +201,4 @@
     </section>
 
 @endsection
+

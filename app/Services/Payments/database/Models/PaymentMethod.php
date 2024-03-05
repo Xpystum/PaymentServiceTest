@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Payments\database\Models;
+namespace App\Services\Payments\Database\Models;
 
 use App\Services\Payments\database\Enums\PaymentDriverEnum;
 use Carbon\Carbon;
