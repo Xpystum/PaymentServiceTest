@@ -2,10 +2,9 @@
 
 namespace App\Services\Payments;
 
-use App\Services\Payments\App\Actions\CancelPayment;
-use App\Services\Payments\App\Actions\CompletePayment;
+use App\Services\Payments\App\Actions\CancelPaymentAction;
+use App\Services\Payments\App\Actions\CompletePaymentAction;
 use App\Services\Payments\App\Actions\CreatePaymentAction;
-use App\Services\Payments\App\Actions\FindPaymentMethodAction;
 use App\Services\Payments\App\Actions\GetPaymentMethodsAction;
 use App\Services\Payments\App\Actions\GetPaymentsAction;
 use App\Services\Payments\App\Actions\UpdatePaymentAction;
@@ -40,15 +39,14 @@ class PaymentService
         return new UpdatePaymentAction;
     }
 
-    public function completePayment() : CompletePayment
+    public function completePayment() : CompletePaymentAction
     {       
-        return new CompletePayment;
+        return new CompletePaymentAction;
     }
 
-    public function cancelPayment() : CancelPayment
+    public function cancelPayment() : CancelPaymentAction
     {   
-           
-        return new CancelPayment;
+        return new CancelPaymentAction;
     }
 
  

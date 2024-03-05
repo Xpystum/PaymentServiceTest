@@ -8,7 +8,8 @@ Route::redirect('/', '/orders', 301)->name('home');
 
 
 
-Route::controller(OrderController::class)->group(function() {
+Route::controller(OrderController::class)->whereUuid('order')
+    ->group(function() {
 
     Route::get('/orders',  'index')->name('orders');
 
@@ -16,9 +17,10 @@ Route::controller(OrderController::class)->group(function() {
 
     Route::post('/orders/{order:uuid}/payment', 'payment')->name('orders.payment');
 
-});
+}); 
 
-Route::controller(PaymentController::class)->group(function() {
+Route::controller(PaymentController::class)->whereUuid('order')
+    ->group(function() {
 
     Route::get('/payments/{payment:uuid}/checkout', 'checkout')->name('payments.checkout');
 

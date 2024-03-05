@@ -103,19 +103,21 @@
 
                 </x-list.list-group>
 
-                <x-card-body>
+                @if($order->status->isPending())
+                    <x-card-body>
 
-                    <x-form action="{{ route('orders.payment', $order->uuid) }}" method="POST">
+                        <x-form action="{{ route('orders.payment', $order->uuid) }}" method="POST">
 
-                        <x-button  type="submit" >
+                            <x-button  type="submit" >
 
-                            {{ __('Перейти к оплате') }}
-    
-                        </x-button>
+                                {{ __('Перейти к оплате') }}
+        
+                            </x-button>
 
-                    </x-form>
+                        </x-form>
 
-                </x-card-body>
+                    </x-card-body>
+                @endif
 
             </x-card>
 

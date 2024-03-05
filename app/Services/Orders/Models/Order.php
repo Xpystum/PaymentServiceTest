@@ -3,6 +3,7 @@
 namespace App\services\Orders\Models;
 
 use App\Services\Orders\Enums\OrderStatusEnum;
+use App\Services\Orders\OrderService;
 use App\Services\Payments\database\Models\Payment;
 use App\Services\Payments\Interface\Payable;
 use App\Support\Values\AmountValue;
@@ -87,5 +88,11 @@ class Order extends Model implements Payable
         return route('orders.show', $this->uuid);
     }
     
+    public function onPaymentComplete(): void
+    {
+
+        (new OrderService)->completeOrder()->run($this);
+    }
+
 }
  
