@@ -21,6 +21,14 @@
 
                 </a>
             </li>
+
+            <li class="nav-item">
+              <a href="{{ route('subscriptions') }}" class="nav-link active" aria-current="pahe">
+
+                  {{ __('Мои Подписки') }}
+
+              </a>
+          </li>
         </ul>
         
       </div>

@@ -40,7 +40,7 @@ class Order extends Model implements Payable
         'status', 
 
         'currency_id', 'amount'
-
+        
     ];
 
     protected $casts = [

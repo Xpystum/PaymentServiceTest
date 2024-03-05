@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/orders', 301)->name('home');
@@ -11,11 +12,26 @@ Route::redirect('/', '/orders', 301)->name('home');
 Route::controller(OrderController::class)->whereUuid('order')
     ->group(function() {
 
-    Route::get('/orders',  'index')->name('orders');
+    Route::get('/orders', 'index')->name('orders');
 
     Route::get('/orders/{order:uuid}', 'show')->name('orders.show');
 
     Route::post('/orders/{order:uuid}/payment', 'payment')->name('orders.payment');
+
+}); 
+
+
+Route::controller(SubscriptionController::class)->whereUuid('order')->group(function() 
+{
+    Route::get('/subscriptions',  'index')->name('subscriptions');
+
+    Route::get('/subscriptions/create', 'create')->name('subscriptions.create');
+
+    Route::post('/subscriptions', 'store')->name('subscriptions.store');
+    
+    Route::get('/subscriptions/{subscription:uuid}', 'show')->name('subscriptions.show');
+
+    Route::post('/subscriptions/{subscription:uuid}', 'payment')->name('subscriptions.payment');
 
 }); 
 

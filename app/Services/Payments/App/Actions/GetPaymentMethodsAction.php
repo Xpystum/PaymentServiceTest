@@ -11,13 +11,20 @@ use Illuminate\Database\Eloquent\Collection;
 
 class GetPaymentMethodsAction{
 
-    use ActionHelperTrait;
+    private bool|null $active = true;
 
     private int|null $id = null;
 
     public function id(int $id): static
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function active(bool $active): static
+    {
+        $this->active = $active;
 
         return $this;
     }
@@ -51,13 +58,27 @@ class GetPaymentMethodsAction{
 
     public function first(): PaymentMethod|null
     {
-        return $this->query()->first();
+        /**
+         * @var Build $query
+         */
+
+        $query = $this->query();
+
+        return $query->first();
+
     }
 
     public function get(): Collection|null
     {
         //Вернуть все способы оплаты где action = true
-        return $this->query()->get();
+
+         /**
+         * @var Build $query
+         */
+
+        $query = $this->query();
+
+        return $query->get();
     }
 
 

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Payments\App\Actions\Payment\UuidPaymentAction;
 use App\Services\Payments\App\Requests\UpdatePaymentRequest;
-use App\Services\Payments\Database\Enums\PaymentStatusEnum;
 use App\Services\Payments\database\Models\Payment;
 use App\Services\Payments\PaymentService;
 use Illuminate\Http\Request;

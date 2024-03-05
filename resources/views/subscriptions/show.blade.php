@@ -7,7 +7,7 @@
         <x-container>
 
             <h4 class="mb-3">
-                {{ __('Мои Заказы') }}
+                {{ __('Мои Подписки') }}
             </h4>
 
             <x-card class="card">
@@ -16,7 +16,7 @@
 
                     <h5 class="card-title-mb-0">
 
-                        {{__('Детали Заказа')}}
+                        {{__('Детали Подписки')}}
 
                     </h5>
 
@@ -33,14 +33,14 @@
                             <div class="col-4"> 
 
                                 <div class="text-muted">
-                                    {{ __('ID Заказа') }} 
+                                    {{ __('ID Подписки') }} 
                                 </div>
                             
                             </div>
 
                             <div class="col-8">
 
-                                {{ $order->uuid }}
+                                {{ $subscription->uuid }}
 
                             </div>
 
@@ -56,7 +56,7 @@
 
                                 <div class="text-muted">
 
-                                    {{ __('Сумма Заказа') }} 
+                                    {{ __('Сумма Подписки') }} 
 
                                 </div>
 
@@ -64,7 +64,7 @@
 
                             <div class="col-8">
 
-                                {{ $order->amount }} {{ $order->currency_id }}
+                                {{ $subscription->price }} {{ $subscription->currency_id }}
     
                             </div>
                             
@@ -81,7 +81,7 @@
 
                                 <div class="text-muted">
 
-                                    {{ __('Статус Оплаты Заказа') }} 
+                                    {{ __('Статус Оплаты Подписки') }} 
 
                                 </div>
 
@@ -89,9 +89,9 @@
 
                             <div class="col-8">
 
-                                <div class="text-{{ $order->status->color() }}">
+                                <div class="text-{{ $subscription->status->color() }}">
 
-                                    {{ $order->status->name() }} 
+                                    {{ $subscription->status->name() }} 
 
                                 </div>
                             
@@ -103,10 +103,10 @@
 
                 </x-list.list-group>
 
-                @if($order->status->isPending())
+                @if($subscription->status->isPending())
                     <x-card-body>
 
-                        <x-form action="{{ route('orders.payment', $order->uuid) }}" method="POST">
+                        <x-form action="{{ route('subscriptions.payment', $subscription->uuid) }}" method="POST">
 
                             <x-button  type="submit" >
 
