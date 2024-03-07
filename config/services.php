@@ -14,6 +14,13 @@ return [
     |
     */
 
+    'ykassa' => [
+
+        'key' => env('YKASSA_KEY'),
+        'shopId' => env('YKASSA_ID'),
+
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

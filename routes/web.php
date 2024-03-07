@@ -3,11 +3,12 @@
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/orders', 301)->name('home');
 
-
+Route::get('/test', TestController::class);
 
 Route::controller(OrderController::class)->whereUuid('order')
     ->group(function() {
