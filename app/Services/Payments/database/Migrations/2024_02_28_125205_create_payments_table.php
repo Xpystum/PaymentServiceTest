@@ -47,6 +47,8 @@ return new class extends Migration
 
             $table->string('driver')->nullable(); // для удобности (но нарушается нормализация)
 
+            $table->string('driver_payment_id')->nullable()->comment('id платежа у провайдера'); // для удобности (но нарушается нормализация)
+
 
         });
     }

@@ -178,6 +178,7 @@ return [
         App\Services\Orders\OrderSerivceProvider::class,
         App\Services\Payments\PaymentServiceProvider::class,
         App\Services\Subscriptions\SubscriptioServiceProvider::class,
+        App\Providers\YkassaServiceProvider::class,
         
     ])->toArray(),
 

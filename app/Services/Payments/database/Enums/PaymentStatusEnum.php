@@ -6,6 +6,8 @@ enum PaymentStatusEnum: string
 {
     case pending = 'pending';
 
+    case waiting_for_capture = 'waiting_for_capture';
+
     case completed = 'completed';
 
     case cancelled = 'cancelled';
@@ -16,9 +18,11 @@ enum PaymentStatusEnum: string
 
             self::pending => 'Ожидает',
 
+            self::waiting_for_capture => 'Ожидает Подтверждение',
+
             self::completed => 'Завершено',
 
-            self::cancelled => 'Отменено',
+            self::cancelled => 'Отмененa',
 
         };
     }
@@ -28,6 +32,8 @@ enum PaymentStatusEnum: string
         return match($this){
 
             self::pending => 'warning',
+
+            self::waiting_for_capture => 'info',
 
             self::completed => 'success',
 
@@ -46,6 +52,12 @@ enum PaymentStatusEnum: string
     {
         
         return $this->is(PaymentStatusEnum::pending);
+    }
+
+    public function isWaiting(): bool
+    {
+        
+        return $this->is(PaymentStatusEnum::waiting_for_capture);
     }
 
     public function isCompleted(): bool

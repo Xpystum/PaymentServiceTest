@@ -2,15 +2,16 @@
 
 namespace App\Services\Payments;
 
-use App\Services\Payments\App\Actions\CancelPaymentAction;
-use App\Services\Payments\App\Actions\CompletePaymentAction;
-use App\Services\Payments\App\Actions\CreatePaymentAction;
-use App\Services\Payments\App\Actions\GetPaymentMethodsAction;
 use App\Services\Payments\App\Actions\GetPaymentsAction;
+use App\Services\Payments\App\Actions\CancelPaymentAction;
+use App\Services\Payments\App\Actions\CreatePaymentAction;
 use App\Services\Payments\App\Actions\UpdatePaymentAction;
-use App\Services\Payments\Drivers\Factory\PaymentDriverFactory;
+use App\Services\Payments\App\Actions\WaitingPaymentAction;
 use App\Services\Payments\database\Enums\PaymentDriverEnum;
 use App\Services\Payments\Interface\PaymentDriverInterface;
+use App\Services\Payments\App\Actions\CompletePaymentAction;
+use App\Services\Payments\App\Actions\GetPaymentMethodsAction;
+use App\Services\Payments\Drivers\Factory\PaymentDriverFactory;
 
 class PaymentService
 {
@@ -42,6 +43,11 @@ class PaymentService
     public function completePayment() : CompletePaymentAction
     {       
         return new CompletePaymentAction;
+    }
+
+    public function waitingPayment() : WaitingPaymentAction
+    {       
+        return new WaitingPaymentAction;
     }
 
     public function cancelPayment() : CancelPaymentAction

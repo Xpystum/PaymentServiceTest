@@ -38,5 +38,12 @@ class InstallPaymentsCommand extends Command
                 ['active' => app()->isProduction()? false : true ],
         );
 
+        PaymentMethod::query()
+        ->firstOrCreate(
+            ['driver' => PaymentDriverEnum::ykassa ], 
+            ['name' => 'Банковская Карта'],
+            ['active' => false ],
+    );
+
     }
 }

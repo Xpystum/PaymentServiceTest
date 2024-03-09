@@ -9,7 +9,7 @@ use App\Services\Ykassa\App\Actions\DTO\Entity\PaymentEntity;
 
 class CancelPaymentAction extends AbstractPaymentAction
 {
-
+    //Платеж можно отменить если он находится в состоянии waiting_for_capture
     public function run(PaymentEntity $PaymentEntity): ?PaymentEntity
     {
         
@@ -44,7 +44,7 @@ class CancelPaymentAction extends AbstractPaymentAction
 
             value: $response->getAmount()->getValue(),
 
-            url: $response->getConfirmation()->getConfirmationUrl(),
+            url: $response?->getConfirmation()?->getConfirmationUrl(),
 
             order_uuid: $response->getMetadata()->order_id
 

@@ -18,7 +18,7 @@ class PaymentEntity
 
         public int $value,
 
-        public string $url,
+        public ?string $url,
         
         public string $order_uuid,
 

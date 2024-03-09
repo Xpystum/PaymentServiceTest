@@ -119,6 +119,23 @@
                     </x-card-body>
                 @endif
 
+                @if($order->status->isWaiting())
+                
+                    <x-card-body>
+
+                        <x-form action="{{ route('ykassa.cancel', $order->uuid) }}" method="POST">
+
+                            <x-button type="submit" >
+
+                                {{ __('Отменить Платеж') }}
+        
+                            </x-button>
+
+                        </x-form>
+
+                    </x-card-body>
+                @endif
+
             </x-card>
 
         </x-container>

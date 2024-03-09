@@ -3,26 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Services\Ykassa\YkassaConfig;
 use App\Services\Ykassa\YkassaService;
 use App\Services\Ykassa\App\Actions\DTO\CreatePaymentData;
-use YooKassa\Model\Notification\NotificationEventType;
 
 class TestController extends Controller
 {
-    public function __invoke()
+    public function __invoke(YkassaService $ykassa)
     {
-        $config = config('services.ykassa');
-
-        $ykassa = new YkassaService(
-
-            new YkassaConfig(
-                key: $config['key'],
-                shopId: $config['shopId'],
-            )
-
-        );
+      
 
         $PaymentEntity = $ykassa->createPayment(
 
@@ -30,7 +18,7 @@ class TestController extends Controller
                 
                 value: 123,
                 currency: 'RUB',
-                capture: true,
+                capture: false,
                 idempotenceKey: (string) Str::uuid(),
                 returnUrl: 'https://example.com/callback',
 
@@ -40,9 +28,12 @@ class TestController extends Controller
 
 
         $PaymentEntity = $ykassa->FindPayment($PaymentEntity->id);
-
-
+        $PaymentEntity = $ykassa->CancelPayment($PaymentEntity);
         dd($PaymentEntity);
+        
+       
+
+        
         
         // $PaymentEntity = $ykassa->CancelPayment($PaymentEntity);
 

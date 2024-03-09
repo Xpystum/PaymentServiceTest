@@ -6,6 +6,8 @@ enum OrderStatusEnum: string
 {
     case pending = 'pending';
 
+    case waiting_for_capture = 'waiting_for_capture';
+
     case completed = 'completed';
 
     case cancelled = 'cancelled';
@@ -16,9 +18,11 @@ enum OrderStatusEnum: string
 
             self::pending => 'Ожидает',
 
+            self::waiting_for_capture => 'Ожидает Подтверждение',
+
             self::completed => 'Завершено',
 
-            self::cancelled => 'Отменено',
+            self::cancelled => 'Отмененa',
 
         };
     }
@@ -28,6 +32,8 @@ enum OrderStatusEnum: string
         return match($this){
 
             self::pending => 'warning',
+
+            self::waiting_for_capture => 'info',
 
             self::completed => 'success',
 
@@ -54,6 +60,11 @@ enum OrderStatusEnum: string
     public function isCancelled() : bool
     {
         return $this->is(self::cancelled);
+    }
+
+    public function isWaiting() : bool
+    {
+        return $this->is(self::waiting_for_capture);
     }
 
 }

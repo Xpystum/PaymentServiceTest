@@ -22,7 +22,7 @@ class GetPaymentAction extends AbstractPaymentAction
             
         }
 
-       
+
         return new PaymentEntity(
 
             id: $response->getId(),
@@ -33,7 +33,7 @@ class GetPaymentAction extends AbstractPaymentAction
 
             value: $response->getAmount()->getValue(),
 
-            url: $response->getConfirmation()->getConfirmationUrl(),
+            url: $response?->getConfirmation()?->getConfirmationUrl(),
 
             order_uuid: $response->getMetadata()->order_id
 

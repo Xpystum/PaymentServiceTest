@@ -48,7 +48,7 @@ class YkassaService
     }
 
 
-    //отмена платежа только   в состоянии waiting_for_capture
+    //отмена платежа только в состоянии waiting_for_capture
     public function CancelPayment(PaymentEntity $PaymentEntity) : ?PaymentEntity
     {
         //отмена платежа в состоянии waiting_for_capture
@@ -56,7 +56,7 @@ class YkassaService
         
     }
 
-    public function checkCallback(array $data) : ?PaymentEntity
+    public function checkCallback(array $data) : PaymentEntity
     {
         return CheckCallbackAction::make($this)->run($data);
     }

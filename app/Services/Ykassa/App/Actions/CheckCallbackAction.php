@@ -6,8 +6,6 @@ use App\Services\Ykassa\Database\Enums\PaymentStatusEnum;
 use App\Services\Ykassa\App\Actions\AbstractPaymentAction;
 use App\Services\Ykassa\App\Actions\DTO\Entity\PaymentEntity;
 
-use YooKassa\Model\Notification\NotificationSucceeded;
-use YooKassa\Model\Notification\NotificationWaitingForCapture;
 use YooKassa\Model\Notification\NotificationEventType;
 
 class CheckCallbackAction extends AbstractPaymentAction
@@ -16,12 +14,13 @@ class CheckCallbackAction extends AbstractPaymentAction
     public function run(array $data): ?PaymentEntity
     {
         ##TODO Проверить $data
-
+        
         try {
 
-            $source = file_get_contents('php://input');
+            $dataJSON = json_encode($data);
+            // $source = file_get_contents('php://input');
             //получаем входящие параметры распарсиваем в json
-            $data = json_decode($source, true);
+            $data = json_decode($dataJSON, true);
     
             //создаём фабрику 
             $factory = new \YooKassa\Model\Notification\NotificationFactory();
@@ -34,28 +33,29 @@ class CheckCallbackAction extends AbstractPaymentAction
     
             $client = $this->clientSDK;
     
-    
             //проверяем находится ли ip адресса, среди ip адрессов юмани (безопасность)
-            if (!$client->isNotificationIPTrusted($_SERVER['REMOTE_ADDR'])) {
-    
-                //возвращаем 400 - если IP чужой
-                return response('Something went wrong', 400);
+
+            // if (!$client->isNotificationIPTrusted($_SERVER['REMOTE_ADDR'])) {
                 
-            }
-    
+            //     //возвращаем 400 - если IP чужой
+            //     return response('Something went wrong', 400);
+                
+            // }
+
+
             if ($notificationObject->getEvent() === NotificationEventType::PAYMENT_SUCCEEDED) {
                 $someData = [
                     'paymentId' => $responseObject->getId(),
                     'paymentStatus' => $responseObject->getStatus(),
                 ];
-    
+               
+
               
             } elseif ($notificationObject->getEvent() === NotificationEventType::PAYMENT_WAITING_FOR_CAPTURE) {
                 $someData = [
                     'paymentId' => $responseObject->getId(),
                     'paymentStatus' => $responseObject->getStatus(),
                 ];
-    
                 
             } elseif ($notificationObject->getEvent() === NotificationEventType::PAYMENT_CANCELED) {
                 $someData = [
@@ -70,22 +70,22 @@ class CheckCallbackAction extends AbstractPaymentAction
                     'refundStatus' => $responseObject->getStatus(),
                     'paymentId' => $responseObject->getPaymentId(),
                 ];
-    
+                
             } else {
-    
+                
+                
                 return response('Something went wrong', 400);
     
             }
     
     
             // Получим актуальную информацию о платеже
-            if ($response = $client->getPaymentInfo($someData['paymentId'])) {
-    
-                $paymentStatus = $response->getStatus();
-    
+            if ($paymentStatus = $client->getPaymentInfo($someData['paymentId'])) {
+
+
                 
             } else {
-    
+                
                 return response('Something went wrong', 400);
     
             }
@@ -97,21 +97,23 @@ class CheckCallbackAction extends AbstractPaymentAction
         }
       
 
+        //по API SDK YKASSA нам нужно отправить ответ, что мы получили уведомление.
+        // response('Get' , 200);
 
        
         return new PaymentEntity(
 
-            id: $response->getId(),
+            id: $paymentStatus->getId(),
 
-            status: PaymentStatusEnum::from($response->getStatus()),
+            status: PaymentStatusEnum::from($paymentStatus->getStatus()),
 
-            paid: $response->getPaid(),
+            paid: $paymentStatus->getPaid(),
 
-            value: $response->getAmount()->getValue(),
+            value: $paymentStatus->getAmount()->getValue(),
 
-            url: $response->getConfirmation()->getConfirmationUrl(),
+            url: $paymentStatus?->getConfirmation()?->getConfirmationUrl(),
 
-            order_uuid: $response->getMetadata()->order_id
+            order_uuid: $paymentStatus->getMetadata()->order_id
 
         );
 

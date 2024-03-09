@@ -35,6 +35,7 @@ class Order extends Model implements Payable
 
     protected $fillable = [
 
+
         'uuid',
 
         'status', 

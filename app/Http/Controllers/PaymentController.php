@@ -60,12 +60,11 @@ class PaymentController extends Controller
 
         //получаем наш драйвер из сервеса
         $driver = $PaymentService->getDriver($payment->driver);
-
+        
         //возваращем страничку нашего драйвера
         return $driver->view($payment);
     }
 
-    //Тестовый способ оплаты
     public function complete(Payment $payment, PaymentService $paymentService)
     {
         $paymentService->completePayment()->run($payment);
@@ -74,8 +73,8 @@ class PaymentController extends Controller
             'uuid' => $payment->uuid,
         ]); 
     }
+   
 
-    //Тестовый способ оплаты
     public function cancel(Payment $payment, PaymentService $paymentService)
     {
         $paymentService->cancelPayment()->run($payment);
@@ -83,25 +82,6 @@ class PaymentController extends Controller
         return redirect()->route('payments.failure' , [
             'uuid' => $payment->uuid,
         ]);
-    }
-
-    //Тестовый способ оплаты
-    public function success(
-        Request $request, 
-        Payment $payment,
-        PaymentService $paymentService,
-    ) { 
-        
-        $uuid = $request->input('uuid');
-
-        $payment = $paymentService
-            ->getPayments()
-            ->uuid($uuid)
-            ->first();
-
-        abort_unless($payment, 404);
-
-        return view('payments.success', compact('payment'));
     }
 
     public function failure(
@@ -121,4 +101,26 @@ class PaymentController extends Controller
 
         return view('payments.failure', compact('payment'));
     }
+
+    public function success(
+        Request $request, 
+        Payment $payment,
+        PaymentService $paymentService,
+    ) { 
+        
+        $uuid = $request->input('uuid');
+
+        $payment = $paymentService
+            ->getPayments()
+            ->uuid($uuid)
+            ->first();
+
+        abort_unless($payment, 404);
+
+        return view('payments.success', compact('payment'));
+    }
+
+
+
+  
 }

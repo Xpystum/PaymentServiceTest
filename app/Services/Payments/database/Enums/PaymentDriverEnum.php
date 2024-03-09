@@ -6,11 +6,14 @@ enum PaymentDriverEnum: string
 {
     case test = 'test';
 
+    case ykassa = 'ykassa';
+
     public function name(): string
     {
         return match($this){
 
             self::test => 'Тестовый провайдер',
+            self::ykassa => 'Юкасса',
 
         };
     }

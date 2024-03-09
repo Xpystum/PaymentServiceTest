@@ -12,7 +12,6 @@ use App\Services\Payments\Database\Models\Payment;
 class CompletePaymentAction{
 
 
-
     public function run(Payment $payment): bool
     {
 

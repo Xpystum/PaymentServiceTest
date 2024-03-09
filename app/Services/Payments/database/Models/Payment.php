@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * 
  * @property Payable $payable
  * 
+ * @property string $currency_id
+ * 
  * @property int $payable_id
  * 
  * @property int $method_id
@@ -35,6 +37,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property PaymentMethod $method_id
  * 
  * @property PaymentDriverEnum $driver
+ * 
+ * @property string|null $driver_payment_id
  */
 class Payment extends Model
 {   
@@ -53,7 +57,10 @@ class Payment extends Model
 
         'method_id',
 
-        'driver',
+        'driver' , 
+
+        'driver_payment_id'
+
 
     ];
 
@@ -78,8 +85,6 @@ class Payment extends Model
 
         return $this->BelongsTo(PaymentMethod::class);
     }
-
-    
 
    
 }

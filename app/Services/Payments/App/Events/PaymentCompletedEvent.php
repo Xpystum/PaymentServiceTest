@@ -11,7 +11,6 @@ class PaymentCompletedEvent
 
         public PaymentCompletedData $data,
 
-
     ) {}
 
 }

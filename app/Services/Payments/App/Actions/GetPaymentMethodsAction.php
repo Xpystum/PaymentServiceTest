@@ -2,11 +2,12 @@
 
 namespace App\Services\Payments\App\Actions;
 
-use App\Services\Payments\App\Actions\Traits\ActionHelperTrait;
-use App\Services\Payments\Database\Models\PaymentMethod;
 use ArgumentCountError;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Services\Payments\Interface\Payable;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Services\Payments\Database\Models\PaymentMethod;
+use App\Services\Payments\App\Actions\Traits\ActionHelperTrait;
 
 
 class GetPaymentMethodsAction{
@@ -14,6 +15,8 @@ class GetPaymentMethodsAction{
     private bool|null $active = true;
 
     private int|null $id = null;
+
+    
 
     public function id(int $id): static
     {
@@ -54,6 +57,8 @@ class GetPaymentMethodsAction{
 
         return $query;
     }
+
+  
 
 
     public function first(): PaymentMethod|null

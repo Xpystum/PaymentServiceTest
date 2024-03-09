@@ -2,13 +2,13 @@
 
 namespace App\Services\Orders\Listeners;
 
+use Exception;
 use App\services\Orders\Models\Order;
 use App\Services\Orders\OrderService;
-use App\Services\Payments\App\Events\PaymentCompletedEvent;
-use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Services\Payments\App\Events\PaymentWaitingEvent;
 
-class CompleteOrderListener implements ShouldQueue
+class WaitingOrderListener implements ShouldQueue
 {
 
     public function __construct(
@@ -20,7 +20,7 @@ class CompleteOrderListener implements ShouldQueue
 
     public function handle(
 
-        PaymentCompletedEvent $event,
+        PaymentWaitingEvent $event,
 
     ): void {
 
@@ -36,7 +36,7 @@ class CompleteOrderListener implements ShouldQueue
     
         if($order = Order::query()->find($payableId)){
 
-            $this->orderService->completeOrder()->run($order);
+            $this->orderService->waitingOrder()->run($order);
 
         } else {
 
