@@ -2,7 +2,7 @@
 
 namespace App\Services\Orders\Factories;
 
-use App\Services\Currencies\Models\Currency;
+use App\Services\Currencies\Database\Models\Currency;
 use App\Services\Orders\Enums\OrderStatusEnum;
 use App\services\Orders\Models\Order;
 use App\Support\Values\AmountValue;

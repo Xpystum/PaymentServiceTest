@@ -2,38 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Currencies\CurrencyService;
+use App\Services\Currencies\Database\Source\Enums\SourceEnum;
+use App\Services\Currencies\Database\Source\SourcePrice;
+use App\Support\Values\AmountValue;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-use App\Services\Ykassa\YkassaService;
-use App\Services\Ykassa\App\Actions\DTO\CreatePaymentData;
 
 class TestController extends Controller
 {
-    public function __invoke(YkassaService $ykassa)
+    public function __invoke()
     {
-      
+        
+        $service = new CurrencyService;
+        $source = $service->getSource(SourceEnum::cbrf);
+        // dd($source->getPrices());
+        $data = $service->updatePrices()->run($source);
 
-        $PaymentEntity = $ykassa->createPayment(
 
-            new CreatePaymentData(
+
+        // dd(Str::replace('-', '/', $date));
+
+        // dd($response);
+
+        // $PaymentEntity = $ykassa->createPayment(
+
+        //     new CreatePaymentData(
                 
-                value: 123,
-                currency: 'RUB',
-                capture: false,
-                idempotenceKey: (string) Str::uuid(),
-                returnUrl: 'https://example.com/callback',
+        //         value: 123,
+        //         currency: 'RUB',
+        //         capture: false,
+        //         idempotenceKey: (string) Str::uuid(),
+        //         returnUrl: 'https://example.com/callback',
 
-            )
+        //     )
 
-        );
+        // );
 
 
-        $PaymentEntity = $ykassa->FindPayment($PaymentEntity->id);
-        $PaymentEntity = $ykassa->CancelPayment($PaymentEntity);
-        dd($PaymentEntity);
-        
-       
-
-        
+        // $PaymentEntity = $ykassa->FindPayment($PaymentEntity->id);
+        // $PaymentEntity = $ykassa->CancelPayment($PaymentEntity);
+        // dd($PaymentEntity);
         
         // $PaymentEntity = $ykassa->CancelPayment($PaymentEntity);
 

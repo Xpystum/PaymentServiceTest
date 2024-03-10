@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Currencies\Commands\InstallCurrenciesCommand;
+use App\Services\Currencies\App\Commands\InstallCurrenciesCommand;
 use App\Services\Orders\Commands\InstallOrdersCommand;
 use App\Services\Payments\App\Commands\InstallPaymentsCommand;
 use Illuminate\Console\Command;

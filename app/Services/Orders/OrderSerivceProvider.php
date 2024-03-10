@@ -32,10 +32,12 @@ class OrderSerivceProvider extends ServiceProvider
         if($this->app->runningInConsole()){
             //наполнением таблицы заказами
             // (new OrderFactory)->count(100)->create();
+
             $this->loadMigrationsFrom(__DIR__ . '/Migrations');
             $this->commands([
                 InstallOrdersCommand::class,
             ]);
+            
         }
 
         Event::listen(PaymentCompletedEvent::class, CompleteOrderListener::class);

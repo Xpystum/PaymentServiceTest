@@ -9,6 +9,18 @@ php artisan migrate
 
 ```
 
+## Валюты:
+
+```
+
+
+currencies:prices {source} - обновление валют
+{source} - cbrf , manual
+
+
+```
+
+
 ## GIT
 ```
 
