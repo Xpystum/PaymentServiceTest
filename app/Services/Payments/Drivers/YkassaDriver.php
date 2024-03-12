@@ -18,7 +18,7 @@ class YkassaDriver implements PaymentDriverInterface
 
     public function view(Payment $payment): View
     {
-     
+        
         $ykassaPayment = $this->ykassaService->createPayment(
             new CreatePaymentData(
                 value: $payment->amount->value(),
@@ -29,6 +29,8 @@ class YkassaDriver implements PaymentDriverInterface
                 description: "",
             )
         );
+
+        dd( $ykassaPayment);
 
         $payment->update(['driver_payment_id' => $ykassaPayment->id]);
 

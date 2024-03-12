@@ -16,6 +16,7 @@ class PaymentController extends Controller
         //вернуть все возможные методы, которые активны
         $methods = $paymentService
             ->getPaymentMethods()
+            ->currency($payment->currency_id)
             ->active(true)
             ->get();
 
@@ -35,7 +36,7 @@ class PaymentController extends Controller
         $method = $paymentService
             ->getPaymentMethods()
             ->id($validated['method_id'])
-            ->active(true)
+            ->active(true)  
             ->first();
 
         abort_unless($method, 404);

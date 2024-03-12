@@ -12,11 +12,19 @@ use App\Services\Payments\App\Actions\Traits\ActionHelperTrait;
 
 class GetPaymentMethodsAction{
 
+
+    private string|null $currency = null;
+
     private bool|null $active = true;
 
     private int|null $id = null;
 
-    
+    public function currency(string $currency): static
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
 
     public function id(int $id): static
     {
@@ -35,6 +43,12 @@ class GetPaymentMethodsAction{
     private function query(): Builder
     {
         $query = PaymentMethod::query();
+
+        if( !is_null($this->currency) ){
+
+            $query->where('driver_currency_id', $this->currency);
+
+        }
 
         if( !is_null($this->active) ){
 

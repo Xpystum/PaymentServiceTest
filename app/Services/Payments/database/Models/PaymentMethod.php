@@ -30,7 +30,7 @@ class PaymentMethod extends Model
  
         'name', 'active',
 
-        'driver',
+        'driver', 'driver_currency_id'
       
     ];
 

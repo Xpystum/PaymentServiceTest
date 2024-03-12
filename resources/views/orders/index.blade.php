@@ -50,7 +50,8 @@
 
                                 <td>
 
-                                    {{ money(convert($order->amount), currency()) }}
+                                    {{-- {{ money(convert($order->amount), currency()) }} --}}
+                                    {{ convert($order->amount) }}
                                    
                                 </td>
 

@@ -7,6 +7,7 @@ use App\Services\Ykassa\App\Actions\AbstractPaymentAction;
 use App\Services\Ykassa\App\Actions\DTO\Entity\PaymentEntity;
 
 use YooKassa\Model\Notification\NotificationEventType;
+use YooKassa\Model\Notification\NotificationFactory;
 
 class CheckCallbackAction extends AbstractPaymentAction
 {
@@ -23,7 +24,7 @@ class CheckCallbackAction extends AbstractPaymentAction
             $data = json_decode($dataJSON, true);
     
             //создаём фабрику 
-            $factory = new \YooKassa\Model\Notification\NotificationFactory();
+            $factory = new NotificationFactory();
     
             //в зависимоти от параметров собирается объект с помощью фабрики
             $notificationObject = $factory->factory($data);

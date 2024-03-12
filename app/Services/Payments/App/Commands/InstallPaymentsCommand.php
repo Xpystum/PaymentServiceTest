@@ -2,6 +2,7 @@
 
 namespace App\Services\Payments\App\Commands;
 
+use App\Services\Currencies\Database\Models\Currency;
 use App\Services\Payments\Database\Enums\PaymentDriverEnum;
 use App\Services\Payments\Database\Models\PaymentMethod;
 
@@ -33,17 +34,34 @@ class InstallPaymentsCommand extends Command
     {
         PaymentMethod::query()
             ->firstOrCreate(
-                ['driver' => PaymentDriverEnum::test ], 
-                ['name' => 'Тестовый способ'],
-                ['active' => app()->isProduction()? false : true ],
-        );
+            [
+                'driver' => PaymentDriverEnum::test ,
+                'driver_currency_id' => Currency::RUB
+            ], [
+                'name' => 'Тестовый способ',
+                'active' => app()->isProduction()? false : true,
+            ]);
 
         PaymentMethod::query()
-        ->firstOrCreate(
-            ['driver' => PaymentDriverEnum::ykassa ], 
-            ['name' => 'Банковская Карта'],
-            ['active' => false ],
-    );
+            ->firstOrCreate(
+            [
+                'driver' => PaymentDriverEnum::ykassa,
+                'driver_currency_id' => Currency::RUB
+
+            ], [
+                'name' => 'Банковская Карта',
+                'active' => app()->isProduction()? false : true,
+            ],);
+
+        PaymentMethod::query()
+            ->firstOrCreate(
+            [
+                'driver' => PaymentDriverEnum::test ,
+                'driver_currency_id' => Currency::USD
+            ], [
+                'name' => 'Тестовый способ',
+                'active' => app()->isProduction()? false : true,
+            ]);
 
     }
 }

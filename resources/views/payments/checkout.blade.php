@@ -166,7 +166,7 @@
 
                                                 <option value="{{ $method->id }}">
 
-                                                    {{ __($method->name) }}
+                                                    {{ __($method->name) }}  ({{ __($method->driver_currency_id) }})
 
                                                 </option>
 
