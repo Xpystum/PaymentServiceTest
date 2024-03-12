@@ -7,8 +7,6 @@ use App\Services\Currencies\Database\Source\Exseptions\SourceException;
 use App\Services\Currencies\Database\Source\Interface\Source;
 use Illuminate\Database\Eloquent\Collection;
 
-use function PHPUnit\Framework\isEmpty;
-
 class UpdateCurrenciesPricesAction
 {
     public function run(Source $source): Collection
@@ -18,7 +16,6 @@ class UpdateCurrenciesPricesAction
             ->where('source' , $source->enum()->value)
             ->get();
 
-        
 
         if($currencies->isEmpty())
         {

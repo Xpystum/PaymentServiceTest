@@ -16,9 +16,16 @@ class TestController extends Controller
     {
         
         $service = new CurrencyService;
-        $source = $service->getSource(SourceEnum::cbrf);
-        // dd($source->getPrices());
-        $data = $service->updatePrices()->run($source);
+
+        $data = $service->convert()
+                    ->from('USD')
+                    ->to('RUB')
+                    ->run(new AmountValue(11.01936874));
+ 
+        dd($data);
+        
+        // $source = $service->getSource(SourceEnum::cbrf);
+        // $data = $service->updatePrices()->run($source);
 
 
 
@@ -48,8 +55,6 @@ class TestController extends Controller
         // $PaymentEntity = $ykassa->CancelPayment($PaymentEntity);
 
         // return 2;
-        
-
 
     }
 }

@@ -30,6 +30,11 @@
               </a>
           </li>
         </ul>
+
+        <ul class="navbar-nav me-end mb-2 mb-lg-0">  
+          <x-dropdown />
+        </ul>
+       
         
       </div>
     </div>

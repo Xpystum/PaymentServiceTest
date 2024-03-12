@@ -4,12 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\YoukassaController;
 use App\Http\Controllers\SubscriptionController;
 
 Route::redirect('/', '/orders', 301)->name('home');
 
 Route::get('/test', TestController::class);
+
+
+//Нужно делать форму отправки
+Route::get('/currency/{currency}', CurrencyController::class)->name('currency');
+
 
 Route::controller(OrderController::class)->whereUuid('order')
     ->group(function() {

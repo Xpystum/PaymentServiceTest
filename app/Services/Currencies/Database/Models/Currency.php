@@ -2,10 +2,11 @@
 
 namespace App\Services\Currencies\Database\Models;
 
-use App\Services\Currencies\Database\Source\Enums\SourceEnum;
 use app\Support\Values\AmountValue;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Services\Currencies\Database\Source\Enums\SourceEnum;
 
 /**
  * 
@@ -21,8 +22,11 @@ class Currency extends Model
 {
     use HasFactory;
 
+    public const MAIN = 'RUB';
+
     public const RUB = 'RUB';
     public const USD = 'USD';
+    public const EUR = 'EUR';
 
     protected $keyType = 'string';
 
@@ -41,5 +45,31 @@ class Currency extends Model
         'price' => AmountValue::class
 
     ];
+
+    public function isMain(): bool
+    {
+        return $this->id === static::MAIN;
+    }
+
+    public function isNotMain(): bool
+    {
+        return !$this->isMain();
+    }
+
+    /**
+     * @return Collection
+     */
+    public static function getCached(): Collection
+    {
+
+        static $cached;
+
+        if($cached)
+        {
+            return $cached;
+        }
+
+        return $cached = static::all();
+    }
 
 }

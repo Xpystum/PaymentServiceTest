@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\Currencies\App\Commands\InstallCurrenciesCommand;
+use App\Services\Currencies\App\Commands\UpdateCurrencyPricesCommand;
 use App\Services\Orders\Commands\InstallOrdersCommand;
 use App\Services\Payments\App\Commands\InstallPaymentsCommand;
 use Illuminate\Console\Command;
@@ -22,6 +23,9 @@ class InstallCommand extends Command
         $this->warn('Установка приложения...');
 
         $this->call(InstallCurrenciesCommand::class);
+
+        //Обновление валют по ЦБ РФ
+        // $this->call(UpdateCurrencyPricesCommand::class);
 
         $this->call(InstallPaymentsCommand::class);
 

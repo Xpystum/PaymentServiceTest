@@ -64,7 +64,7 @@
 
                             <div class="col-8">
 
-                                {{ $order->amount }} {{ $order->currency_id }}
+                                {{ money(convert($order->amount) , currency()) }} 
     
                             </div>
                             

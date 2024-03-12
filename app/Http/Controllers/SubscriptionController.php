@@ -38,14 +38,16 @@ class SubscriptionController extends Controller
          * @var Subscription
          */
         $subscriptions = Subscription::query()
+
             ->create([
                 'uuid' => (string) Str::uuid(),
-                'currency_id' => 'RUB', 
-                'price' => (new AmountValue(rand(100, 1000))), 
+                'currency_id' => currency(), 
+                'price' => convert(new AmountValue(1000)), 
                 'status' => SubscriptionStatusEnum::pending, 
             ]);
             
-        $payment = $paymentService->createPayment()
+        $payment = $paymentService
+            ->createPayment()
             ->payable($subscriptions)
             ->run();
 

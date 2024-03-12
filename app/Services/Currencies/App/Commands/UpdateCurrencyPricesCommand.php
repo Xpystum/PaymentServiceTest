@@ -35,7 +35,7 @@ class UpdateCurrencyPricesCommand extends Command
     public function updatePrices(CurrencyService $service): void
     {
         /**
-         * @var Source $source
+         * @var Source $source - параметр который мы получим из командной строки
          */
         $source = $service->getSource(
             SourceEnum::from($this->argument('source')),
