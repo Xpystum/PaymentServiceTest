@@ -2,10 +2,11 @@
 
 namespace App\Services\Payments\App\Actions;
 
+use app\Support\Values\AmountValue;
 use App\Services\Currencies\CurrencyService;
 use App\Services\Payments\Database\Models\Payment;
+use App\Services\Payments\Interface\PaymentConverter;
 use App\Services\Payments\Database\Models\PaymentMethod;
-use app\Support\Values\AmountValue;
 
 class UpdatePaymentAction{
 
@@ -45,11 +46,17 @@ class UpdatePaymentAction{
     {   
      
         //конвертр валюты в зависимости от выбора валюты провайдера
-        return $this->currencyService
-                    ->convert()
-                    ->from($payment->currency_id)
-                    ->to($payment->driver_currency_id)
-                    ->run($payment->amount);
+        return $this->converter
+                    ->convert(
+
+                        amount: $payment->amount,
+
+                        from: $payment->currency_id,
+                        
+                        to: $payment->driver_currency_id
+
+                    );
+                   
     }
 }
 

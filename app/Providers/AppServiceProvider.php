@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Events\QueryExecuted;
+use App\Adapters\CurrencyPaymentConvertorAdapter;
+use App\Services\Currencies\Database\Models\Currency;
+use App\Services\Payments\Interface\PaymentConverter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,9 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(PaymentConverter::class, CurrencyPaymentConvertorAdapter::class);
     }
-
+ 
     /**
      * Bootstrap any application services.
      */
