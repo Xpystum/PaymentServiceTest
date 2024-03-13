@@ -17,42 +17,42 @@ class PaymentService
 {
     public function getDriver(PaymentDriverEnum $driver): PaymentDriverInterface
     {
-        return (new PaymentDriverFactory)->make($driver);
+        return app(PaymentDriverFactory::class)->make($driver);
     }
 
     public function createPayment() : CreatePaymentAction
     {
-        return new CreatePaymentAction;
+        return app(CreatePaymentAction::class);
     }
 
     public function getPayments() : GetPaymentsAction
     {   
-        return new GetPaymentsAction;
+        return app(GetPaymentsAction::class);
     }
 
     public function getPaymentMethods() : GetPaymentMethodsAction
     {
-        return new GetPaymentMethodsAction;
+        return app(GetPaymentMethodsAction::class);
     }
 
     public function updatePayment() : UpdatePaymentAction
     {   
-        return new UpdatePaymentAction;
+        return app(UpdatePaymentAction::class);
     }
 
     public function completePayment() : CompletePaymentAction
     {       
-        return new CompletePaymentAction;
+        return app(CompletePaymentAction::class);
     }
 
     public function waitingPayment() : WaitingPaymentAction
     {       
-        return new WaitingPaymentAction;
+        return app(WaitingPaymentAction::class);
     }
 
     public function cancelPayment() : CancelPaymentAction
     {   
-        return new CancelPaymentAction;
+        return app(CancelPaymentAction::class);
     }
 
  

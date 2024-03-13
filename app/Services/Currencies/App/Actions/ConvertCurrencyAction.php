@@ -30,7 +30,7 @@ class ConvertCurrencyAction
 
     public function run(AmountValue $amount): AmountValue
     {
-
+        
         $currencies = Currency::getCached();
 
         $from = $currencies->firstWhere('id' , $this->from);

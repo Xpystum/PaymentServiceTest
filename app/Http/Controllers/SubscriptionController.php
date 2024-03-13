@@ -13,9 +13,6 @@ class SubscriptionController extends Controller
 {
     public function index(SubscriptionService $subscriptionService)
     {
-        // $subscriptions = Subscription::query()
-        //     ->latest('id')
-        //     ->get();
 
         $subscriptions = $subscriptionService
             ->getSubscription()
@@ -42,9 +39,10 @@ class SubscriptionController extends Controller
             ->create([
                 'uuid' => (string) Str::uuid(),
                 'currency_id' => currency(), 
-                'price' => convert(new AmountValue(1000)), 
+                'price' => convert(new AmountValue(1250)), 
                 'status' => SubscriptionStatusEnum::pending, 
             ]);
+
             
         $payment = $paymentService
             ->createPayment()

@@ -21,8 +21,9 @@ class YkassaDriver implements PaymentDriverInterface
         
         $ykassaPayment = $this->ykassaService->createPayment(
             new CreatePaymentData(
-                value: $payment->amount->value(),
-                currency: $payment->currency_id,
+                value: $payment->driver_amount->value(),
+                // currency: $payment->currency_id,
+                currency: 'RUB', //Указано хардкодом т.к юмани работает только с рублями (зависит от субаккаунта в основном это RU сигмент)
                 capture: false,
                 idempotenceKey: $payment->uuid,
                 returnUrl: route('payments.success', [ 'uuid' => $payment->uuid ]),
@@ -30,7 +31,7 @@ class YkassaDriver implements PaymentDriverInterface
             )
         );
 
-        dd( $ykassaPayment);
+        // dd( $ykassaPayment);
 
         $payment->update(['driver_payment_id' => $ykassaPayment->id]);
 

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('driver_currency_id')->nullable()->comment('Валюта провайдера');
 
             $table->foreign('driver_currency_id')->references('id')->on('currencies');
+
         });
     }
 

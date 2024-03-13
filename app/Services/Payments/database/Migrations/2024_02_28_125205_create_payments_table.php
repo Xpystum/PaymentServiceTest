@@ -44,10 +44,17 @@ return new class extends Migration
 
             $table->foreign('method_id')->references('id')->on('payment_methods');
 
+            
 
             $table->string('driver')->nullable(); // для удобности (но нарушается нормализация)
 
-            $table->string('driver_payment_id')->nullable()->comment('id платежа у провайдера'); // для удобности (но нарушается нормализация)
+            $table->string('driver_payment_id')->nullable()->comment('id платежа у провайдера на хосте'); // для удобности (но нарушается нормализация)
+
+            $table->string('driver_currency_id')->nullable()->comment('Валюта провайдера');
+
+             $table->decimal('driver_amount', 12, 2)->nullable()->comment('сумма провайдера'); // сумма 
+
+            $table->foreign('driver_currency_id')->references('id')->on('currencies');
 
 
         });

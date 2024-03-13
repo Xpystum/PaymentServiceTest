@@ -16,7 +16,7 @@ class PaymentController extends Controller
         //вернуть все возможные методы, которые активны
         $methods = $paymentService
             ->getPaymentMethods()
-            ->currency($payment->currency_id)
+            // ->currency($payment->currency_id)
             ->active(true)
             ->get();
 
@@ -28,7 +28,7 @@ class PaymentController extends Controller
         Payment $payment, 
         PaymentService $paymentService
     ) {
-
+        
         //проверка статуса платежа если не pending - то 404
         $validated = $request->validated();
        
@@ -40,13 +40,13 @@ class PaymentController extends Controller
             ->first();
 
         abort_unless($method, 404);
-
+   
+       
         //обновляем способ оплаты через сервес
         $paymentService
             ->updatePayment()
             ->method($method)
             ->run($payment);
-
 
         return redirect()->route('payments.process', $payment->uuid);
     }
